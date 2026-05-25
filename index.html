@@ -242,7 +242,33 @@ document.getElementById("aiResponse");
 if(input == ""){
 
 response.innerHTML =
-"⚠️ Please type something";
+if(input.toLowerCase().includes("hello")){
+
+response.innerHTML =
+"🤖 Hello! Welcome to Darkverse AI";
+
+}
+
+else if(input.toLowerCase().includes("how are you")){
+
+response.innerHTML =
+"🤖 I am awesome 🚀";
+
+}
+
+else if(input.toLowerCase().includes("ai")){
+
+response.innerHTML =
+"🤖 AI is the future of technology";
+
+}
+
+else{
+
+response.innerHTML =
+"🤖 Darkverse AI says: " + input;
+
+}
 
 }
 
