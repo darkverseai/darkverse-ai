@@ -249,7 +249,22 @@ response.innerHTML =
 else{
 
 response.innerHTML =
-"🤖 Darkverse AI says: Welcome to the future, " + input;
+if(input.toLowerCase().includes("hello")){
+response.innerHTML = "🤖 Hello! Welcome to Darkverse AI";
+}
+
+else if(input.toLowerCase().includes("how are you")){
+response.innerHTML = "🤖 I am awesome 🚀";
+}
+
+else if(input.toLowerCase().includes("ai")){
+response.innerHTML = "🤖 AI is the future of technology";
+}
+
+else{
+response.innerHTML =
+"🤖 Darkverse AI says: " + input;
+}
 
 }
 
