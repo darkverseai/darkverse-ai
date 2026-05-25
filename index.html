@@ -263,7 +263,8 @@ content: input
 });
 
 const data = await res.json();
-
+console.log(data);
+alert(JSON.stringify(data));
 response.innerHTML =
 data.choices[0].message.content;
 
