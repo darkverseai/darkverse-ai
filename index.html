@@ -252,8 +252,25 @@ headers:{
 },
 
 body:JSON.stringify({
-model:"mistralai/mistral-7b-instruct",
+model:"openai/gpt-3.5-turbo-instruct",
 
 messages:[
 {
-role:"
+role:"user",
+content: input
+]
+})
+});
+
+const data = await res.json();
+
+response.innerHTML =
+data.choices[0].message.content;
+
+} catch(error){
+
+response.innerHTML =
+"❌ Error: " + error.message;
+
+}
+}
