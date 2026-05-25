@@ -191,6 +191,70 @@
 <footer>
   © 2026 Darkverse AI — All Rights Reserved
 </footer>
+<section style="padding:100px 20px;text-align:center;">
 
+<h1 style="margin-bottom:30px;">
+🤖 AI Chat
+</h1>
+
+<input 
+id="userInput"
+type="text"
+placeholder="Ask Darkverse AI..."
+style="
+padding:15px;
+width:80%;
+max-width:400px;
+border:none;
+border-radius:10px;
+font-size:18px;
+outline:none;
+"
+/>
+
+<br><br>
+
+<button class="btn" onclick="replyAI()">
+Send
+</button>
+
+<p 
+id="aiResponse"
+style="
+margin-top:30px;
+font-size:20px;
+color:#00ffcc;
+">
+</p>
+
+</section>
+
+<script>
+
+function replyAI(){
+
+let input =
+document.getElementById("userInput").value;
+
+let response =
+document.getElementById("aiResponse");
+
+if(input == ""){
+
+response.innerHTML =
+"⚠️ Please type something";
+
+}
+
+else{
+
+response.innerHTML =
+"🤖 Darkverse AI says: Welcome to the future, " + input;
+
+}
+
+}
+
+</script>
 </body>
 </html>
