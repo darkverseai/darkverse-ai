@@ -1,177 +1,197 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Darkverse AI</title>
+  <title>Darkverse AI</title>
 
-<style>
+  <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial;
+    }
 
-body{
-background:black;
-color:white;
-}
+    body{
+      background:black;
+      color:white;
+    }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px;
-background:#111;
-}
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px;
+      background:#111;
+      position:sticky;
+      top:0;
+    }
 
-.logo{
-font-size:28px;
-font-weight:bold;
-color:#00ffe1;
-}
+    .logo{
+      font-size:28px;
+      color:#00ffe1;
+      font-weight:bold;
+    }
 
-nav ul{
-display:flex;
-list-style:none;
-gap:20px;
-}
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:20px;
+    }
 
-nav ul li{
-cursor:pointer;
-}
+    nav ul li{
+      cursor:pointer;
+    }
 
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-}
+    .hero{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
+    }
 
-.hero h1{
-font-size:70px;
-color:#00ffe1;
-text-shadow:0 0 20px #00ffe1;
-}
+    .hero h1{
+      font-size:70px;
+      color:#00ffe1;
+      text-shadow:0 0 20px #00ffe1;
+    }
 
-.hero p{
-margin-top:20px;
-font-size:22px;
-color:#ccc;
-}
+    .hero p{
+      margin-top:20px;
+      font-size:22px;
+      color:#ccc;
+    }
 
-.hero button{
-margin-top:30px;
-padding:15px 40px;
-border:none;
-border-radius:40px;
-background:#00ffe1;
-font-size:18px;
-cursor:pointer;
-box-shadow:0 0 20px #00ffe1;
-}
+    .hero button{
+      margin-top:30px;
+      padding:15px 40px;
+      border:none;
+      border-radius:40px;
+      background:#00ffe1;
+      font-size:18px;
+      cursor:pointer;
+      box-shadow:0 0 20px #00ffe1;
+    }
 
-section{
-padding:100px 20px;
-text-align:center;
-}
+    section{
+      padding:100px 20px;
+      text-align:center;
+    }
 
-.cards{
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:50px;
-}
+    .cards{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-top:50px;
+    }
 
-.card{
-background:#111;
-padding:30px;
-width:250px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(0,255,225,0.2);
-}
+    .card{
+      background:#111;
+      padding:30px;
+      width:250px;
+      border-radius:20px;
+      box-shadow:0 0 20px rgba(0,255,225,0.2);
+    }
 
-.card h3{
-margin-bottom:15px;
-color:#00ffe1;
-}
+    .card h3{
+      color:#00ffe1;
+      margin-bottom:15px;
+    }
 
-.chat-section{
-padding:100px 20px;
-text-align:center;
-}
+    .chat-box{
+      max-width:600px;
+      margin:auto;
+      margin-top:40px;
+    }
 
-.chat-box{
-max-width:600px;
-margin:auto;
-}
+    .chat-box input{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+    }
 
-.chat-box input{
-width:100%;
-padding:15px;
-border:none;
-border-radius:10px;
-font-size:18px;
-margin-top:20px;
-}
+    .chat-box button{
+      margin-top:20px;
+      padding:15px 40px;
+      border:none;
+      border-radius:40px;
+      background:#00ffe1;
+      font-size:18px;
+      cursor:pointer;
+      box-shadow:0 0 20px #00ffe1;
+    }
 
-.chat-box button{
-margin-top:20px;
-padding:15px 40px;
-border:none;
-border-radius:40px;
-background:#00ffe1;
-font-size:18px;
-cursor:pointer;
-box-shadow:0 0 20px #00ffe1;
-}
+    #aiResponse{
+      margin-top:30px;
+      font-size:22px;
+      color:#00ffe1;
+    }
 
-#aiResponse{
-margin-top:30px;
-font-size:20px;
-color:#00ffe1;
-}
+    footer{
+      background:#111;
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+      color:#aaa;
+    }
 
-footer{
-background:#111;
-padding:30px;
-text-align:center;
-margin-top:50px;
-}
-
-</style>
+  </style>
 </head>
 
 <body>
 
 <nav>
-<div class="logo">🚀 Darkverse AI</div>
+
+<div class="logo">
+🚀 Darkverse AI
+</div>
 
 <ul>
 <li>Home</li>
 <li>About</li>
 <li>Services</li>
 </ul>
+
 </nav>
 
 <div class="hero">
+
 <h1>Darkverse AI</h1>
-<p>Future of Artificial Intelligence Starts Here</p>
-<button>Enter Future</button>
+
+<p>
+Future of Artificial Intelligence Starts Here
+</p>
+
+<button>
+Enter Future
+</button>
+
 </div>
 
 <section>
-<h1>About Us</h1>
-<p style="margin-top:20px;">
+
+<h1 style="font-size:50px;">
+About Us
+</h1>
+
+<p style="margin-top:20px;color:#aaa;">
 Darkverse AI is building futuristic AI tools and next generation technology.
 </p>
+
 </section>
 
 <section>
-<h1>Our AI Services</h1>
+
+<h1 style="font-size:50px;">
+Our AI Services
+</h1>
 
 <div class="cards">
 
@@ -191,11 +211,14 @@ Darkverse AI is building futuristic AI tools and next generation technology.
 </div>
 
 </div>
+
 </section>
 
-<section class="chat-section">
+<section>
 
-<h1 style="font-size:50px;">🤖 AI Chat</h1>
+<h1 style="font-size:50px;">
+🤖 AI Chat
+</h1>
 
 <div class="chat-box">
 
@@ -218,10 +241,6 @@ Send
 <footer>
 © 2026 Darkverse AI — All Rights Reserved
 </footer>
-
-<script>
-
-<script>
 
 <script>
 
@@ -261,17 +280,17 @@ response.innerHTML =
 
 }
 
-else if(input.includes("ai")){
-
-response.innerHTML =
-"🤖 Artificial Intelligence is the future.";
-
-}
-
 else if(input.includes("who made you")){
 
 response.innerHTML =
 "🤖 I was created by Samir 🚀";
+
+}
+
+else if(input.includes("ai")){
+
+response.innerHTML =
+"🤖 Artificial Intelligence is the future.";
 
 }
 
@@ -285,3 +304,6 @@ response.innerHTML =
 }
 
 </script>
+
+</body>
+</html>
