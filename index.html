@@ -221,7 +221,9 @@ Send
 
 <script>
 
-const API_KEY = "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";
+<script>
+
+const API_KEY = "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
 
 async function replyAI(){
 
@@ -231,7 +233,7 @@ document.getElementById("userInput").value;
 let response =
 document.getElementById("aiResponse");
 
-if(input == ""){
+if(input === ""){
 response.innerHTML =
 "⚠️ Please type something";
 return;
@@ -252,26 +254,32 @@ headers:{
 },
 
 body:JSON.stringify({
-model:"openai/gpt-3.5-turbo-instruct",
+
+model:"mistralai/mistral-7b-instruct",
 
 messages:[
 {
 role:"user",
 content: input
+}
 ]
+
 })
+
 });
 
 const data = await res.json();
-console.log(data);
-alert(JSON.stringify(data));
-response.innerHTML =
-data.choices[0].message.content;
 
-} catch(error){
+response.innerHTML =
+"🤖 " + data.choices[0].message.content;
+
+}catch(error){
 
 response.innerHTML =
 "❌ Error: " + error.message;
 
 }
+
 }
+
+</script>
