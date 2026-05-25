@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Darkverse AI</title>
 
@@ -18,49 +19,43 @@
     }
 
     nav{
+      width:100%;
+      padding:20px;
+      background:#111;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:20px 50px;
-      background:#111;
-      position:sticky;
+      position:fixed;
       top:0;
     }
 
-    nav h2{
-      color:#00ffcc;
+    nav h1{
+      color:#00ffd5;
     }
 
     nav ul{
       display:flex;
-      list-style:none;
       gap:20px;
+      list-style:none;
     }
 
-    nav ul li a{
-      color:white;
-      text-decoration:none;
-      transition:0.3s;
-    }
-
-    nav ul li a:hover{
-      color:#00ffcc;
+    nav ul li{
+      cursor:pointer;
     }
 
     .hero{
       height:100vh;
       display:flex;
-      flex-direction:column;
       justify-content:center;
       align-items:center;
+      flex-direction:column;
       text-align:center;
-      background:radial-gradient(circle,#111,black);
     }
 
-    .hero h1{
+    .hero h2{
       font-size:70px;
-      color:#00ffcc;
-      text-shadow:0 0 20px #00ffcc;
+      color:#00ffd5;
+      text-shadow:0 0 20px #00ffd5;
     }
 
     .hero p{
@@ -69,21 +64,15 @@
       color:#ccc;
     }
 
-    .btn{
+    .hero button{
       margin-top:30px;
-      padding:15px 35px;
-      background:#00ffcc;
+      padding:15px 40px;
       border:none;
       border-radius:30px;
-      font-size:18px;
+      background:#00ffd5;
+      font-size:20px;
       cursor:pointer;
-      transition:0.3s;
-      box-shadow:0 0 20px #00ffcc;
-    }
-
-    .btn:hover{
-      transform:scale(1.1);
-      background:white;
+      box-shadow:0 0 20px #00ffd5;
     }
 
     section{
@@ -91,7 +80,7 @@
       text-align:center;
     }
 
-    .card-container{
+    .cards{
       display:flex;
       justify-content:center;
       gap:20px;
@@ -101,23 +90,58 @@
 
     .card{
       width:250px;
-      background:#111;
       padding:30px;
+      background:#111;
       border-radius:20px;
-      transition:0.3s;
-      box-shadow:0 0 10px #00ffcc33;
+      box-shadow:0 0 15px rgba(0,255,213,0.3);
     }
 
-    .card:hover{
-      transform:translateY(-10px);
-      box-shadow:0 0 20px #00ffcc;
+    .card h3{
+      margin-bottom:15px;
+      color:white;
+    }
+
+    .card p{
+      color:#aaa;
+    }
+
+    .chat-box{
+      max-width:500px;
+      margin:auto;
+      margin-top:40px;
+    }
+
+    .chat-box input{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      margin-bottom:20px;
+      font-size:18px;
+    }
+
+    .chat-box button{
+      padding:15px 40px;
+      border:none;
+      border-radius:30px;
+      background:#00ffd5;
+      cursor:pointer;
+      font-size:18px;
+      box-shadow:0 0 20px #00ffd5;
+    }
+
+    #aiResponse{
+      margin-top:30px;
+      font-size:22px;
+      color:#00ffd5;
     }
 
     footer{
-      text-align:center;
       padding:30px;
+      text-align:center;
       background:#111;
-      color:#888;
+      margin-top:100px;
+      color:#aaa;
     }
 
   </style>
@@ -125,177 +149,135 @@
 
 <body>
 
-<nav>
-  <h2>🚀 Darkverse AI</h2>
+  <nav>
+    <h1>🚀 Darkverse AI</h1>
 
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-  </ul>
-</nav>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Services</li>
+    </ul>
+  </nav>
 
-<div class="hero">
+  <div class="hero">
 
-  <h1>Darkverse AI</h1>
+    <h2>Darkverse AI</h2>
 
-  <p>Future of Artificial Intelligence Starts Here</p>
+    <p>Future of Artificial Intelligence Starts Here</p>
 
-  <button class="btn">
-    Enter Future
-  </button>
-
-</div>
-
-<section id="about">
-
-  <h1>About Us</h1>
-
-  <p style="margin-top:20px;color:#aaa;">
-    Darkverse AI is building futuristic AI tools and next generation technology.
-  </p>
-
-</section>
-
-<section id="services">
-
-  <h1>Our AI Services</h1>
-
-  <div class="card-container">
-
-    <div class="card">
-      <h2>🤖 AI Chatbot</h2>
-      <p style="margin-top:15px;color:#aaa;">
-        Smart futuristic AI assistant.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>🎨 AI Generator</h2>
-      <p style="margin-top:15px;color:#aaa;">
-        Generate images and designs instantly.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>⚡ Automation</h2>
-      <p style="margin-top:15px;color:#aaa;">
-        Powerful AI automation systems.
-      </p>
-    </div>
+    <button>Enter Future</button>
 
   </div>
 
-</section>
+  <section>
 
-<footer>
-  © 2026 Darkverse AI — All Rights Reserved
-</footer>
-<section style="padding:100px 20px;text-align:center;">
+    <h1 style="font-size:50px;">About Us</h1>
 
-<h1 style="margin-bottom:30px;">
-🤖 AI Chat
-</h1>
+    <p style="margin-top:20px;color:#aaa;">
+      Darkverse AI is building futuristic AI tools and next generation technology.
+    </p>
 
-<input 
-id="userInput"
-type="text"
-placeholder="Ask Darkverse AI..."
-style="
-padding:15px;
-width:80%;
-max-width:400px;
-border:none;
-border-radius:10px;
-font-size:18px;
-outline:none;
-"
-/>
+  </section>
 
-<br><br>
+  <section>
 
-<button class="btn" onclick="replyAI()">
-Send
-</button>
+    <h1 style="font-size:50px;">Our AI Services</h1>
 
-<p 
-id="aiResponse"
-style="
-margin-top:30px;
-font-size:20px;
-color:#00ffcc;
-">
-</p>
+    <div class="cards">
 
-</section>
+      <div class="card">
+        <h3>🤖 AI Chatbot</h3>
+        <p>Smart futuristic AI assistant.</p>
+      </div>
 
-<script>
+      <div class="card">
+        <h3>🎨 AI Generator</h3>
+        <p>Generate images and designs instantly.</p>
+      </div>
 
-function replyAI(){
+      <div class="card">
+        <h3>⚡ Automation</h3>
+        <p>Powerful AI automation systems.</p>
+      </div>
 
-let input =
-document.getElementById("userInput").value;
+    </div>
 
-let response =
-document.getElementById("aiResponse");
+  </section>
 
-if(input == ""){
+  <section>
 
-response.innerHTML =
-if(input.toLowerCase().includes("hello")){
+    <h1 style="font-size:50px;">🤖 AI Chat</h1>
 
-response.innerHTML =
-"🤖 Hello! Welcome to Darkverse AI";
+    <div class="chat-box">
 
-}
+      <input
+      type="text"
+      id="userInput"
+      placeholder="Ask Darkverse AI..."
+      >
 
-else if(input.toLowerCase().includes("how are you")){
+      <button onclick="replyAI()">
+        Send
+      </button>
 
-response.innerHTML =
-"🤖 I am awesome 🚀";
+      <div id="aiResponse"></div>
 
-}
+    </div>
 
-else if(input.toLowerCase().includes("ai")){
+  </section>
 
-response.innerHTML =
-"🤖 AI is the future of technology";
+  <footer>
+    © 2026 Darkverse AI — All Rights Reserved
+  </footer>
 
-}
+  <script>
 
-else{
+    function replyAI(){
 
-response.innerHTML =
-"🤖 Darkverse AI says: " + input;
+      let input =
+      document.getElementById("userInput").value;
 
-}
+      let response =
+      document.getElementById("aiResponse");
 
-}
+      if(input == ""){
 
-else{
+        response.innerHTML =
+        "⚠️ Please type something";
 
-response.innerHTML =
-if(input.toLowerCase().includes("hello")){
-response.innerHTML = "🤖 Hello! Welcome to Darkverse AI";
-}
+      }
 
-else if(input.toLowerCase().includes("how are you")){
-response.innerHTML = "🤖 I am awesome 🚀";
-}
+      else if(input.toLowerCase().includes("hello")){
 
-else if(input.toLowerCase().includes("ai")){
-response.innerHTML = "🤖 AI is the future of technology";
-}
+        response.innerHTML =
+        "🤖 Hello! Welcome to Darkverse AI";
 
-else{
-response.innerHTML =
-"🤖 Darkverse AI says: " + input;
-}
+      }
 
-}
+      else if(input.toLowerCase().includes("how are you")){
 
-}
+        response.innerHTML =
+        "🤖 I am awesome 🚀";
 
-</script>
+      }
+
+      else if(input.toLowerCase().includes("ai")){
+
+        response.innerHTML =
+        "🤖 AI is the future of technology";
+
+      }
+
+      else{
+
+        response.innerHTML =
+        "🤖 Darkverse AI says: " + input;
+
+      }
+
+    }
+
+  </script>
+
 </body>
 </html>
