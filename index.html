@@ -1,283 +1,259 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Darkverse AI</title>
+<title>Darkverse AI</title>
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
 
-    body{
-      background:black;
-      color:white;
-    }
+body{
+background:black;
+color:white;
+}
 
-    nav{
-      width:100%;
-      padding:20px;
-      background:#111;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:fixed;
-      top:0;
-    }
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#111;
+}
 
-    nav h1{
-      color:#00ffd5;
-    }
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#00ffe1;
+}
 
-    nav ul{
-      display:flex;
-      gap:20px;
-      list-style:none;
-    }
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
 
-    nav ul li{
-      cursor:pointer;
-    }
+nav ul li{
+cursor:pointer;
+}
 
-    .hero{
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      text-align:center;
-    }
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
 
-    .hero h2{
-      font-size:70px;
-      color:#00ffd5;
-      text-shadow:0 0 20px #00ffd5;
-    }
+.hero h1{
+font-size:70px;
+color:#00ffe1;
+text-shadow:0 0 20px #00ffe1;
+}
 
-    .hero p{
-      margin-top:20px;
-      font-size:22px;
-      color:#ccc;
-    }
+.hero p{
+margin-top:20px;
+font-size:22px;
+color:#ccc;
+}
 
-    .hero button{
-      margin-top:30px;
-      padding:15px 40px;
-      border:none;
-      border-radius:30px;
-      background:#00ffd5;
-      font-size:20px;
-      cursor:pointer;
-      box-shadow:0 0 20px #00ffd5;
-    }
+.hero button{
+margin-top:30px;
+padding:15px 40px;
+border:none;
+border-radius:40px;
+background:#00ffe1;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 0 20px #00ffe1;
+}
 
-    section{
-      padding:100px 20px;
-      text-align:center;
-    }
+section{
+padding:100px 20px;
+text-align:center;
+}
 
-    .cards{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-      margin-top:40px;
-    }
+.cards{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:50px;
+}
 
-    .card{
-      width:250px;
-      padding:30px;
-      background:#111;
-      border-radius:20px;
-      box-shadow:0 0 15px rgba(0,255,213,0.3);
-    }
+.card{
+background:#111;
+padding:30px;
+width:250px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,255,225,0.2);
+}
 
-    .card h3{
-      margin-bottom:15px;
-      color:white;
-    }
+.card h3{
+margin-bottom:15px;
+color:#00ffe1;
+}
 
-    .card p{
-      color:#aaa;
-    }
+.chat-section{
+padding:100px 20px;
+text-align:center;
+}
 
-    .chat-box{
-      max-width:500px;
-      margin:auto;
-      margin-top:40px;
-    }
+.chat-box{
+max-width:600px;
+margin:auto;
+}
 
-    .chat-box input{
-      width:100%;
-      padding:15px;
-      border:none;
-      border-radius:10px;
-      margin-bottom:20px;
-      font-size:18px;
-    }
+.chat-box input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:18px;
+margin-top:20px;
+}
 
-    .chat-box button{
-      padding:15px 40px;
-      border:none;
-      border-radius:30px;
-      background:#00ffd5;
-      cursor:pointer;
-      font-size:18px;
-      box-shadow:0 0 20px #00ffd5;
-    }
+.chat-box button{
+margin-top:20px;
+padding:15px 40px;
+border:none;
+border-radius:40px;
+background:#00ffe1;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 0 20px #00ffe1;
+}
 
-    #aiResponse{
-      margin-top:30px;
-      font-size:22px;
-      color:#00ffd5;
-    }
+#aiResponse{
+margin-top:30px;
+font-size:20px;
+color:#00ffe1;
+}
 
-    footer{
-      padding:30px;
-      text-align:center;
-      background:#111;
-      margin-top:100px;
-      color:#aaa;
-    }
+footer{
+background:#111;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
 
-  </style>
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <h1>🚀 Darkverse AI</h1>
+<nav>
+<div class="logo">🚀 Darkverse AI</div>
 
-    <ul>
-      <li>Home</li>
-      <li>About</li>
-      <li>Services</li>
-    </ul>
-  </nav>
+<ul>
+<li>Home</li>
+<li>About</li>
+<li>Services</li>
+</ul>
+</nav>
 
-  <div class="hero">
+<div class="hero">
+<h1>Darkverse AI</h1>
+<p>Future of Artificial Intelligence Starts Here</p>
+<button>Enter Future</button>
+</div>
 
-    <h2>Darkverse AI</h2>
+<section>
+<h1>About Us</h1>
+<p style="margin-top:20px;">
+Darkverse AI is building futuristic AI tools and next generation technology.
+</p>
+</section>
 
-    <p>Future of Artificial Intelligence Starts Here</p>
+<section>
+<h1>Our AI Services</h1>
 
-    <button>Enter Future</button>
+<div class="cards">
 
-  </div>
+<div class="card">
+<h3>🤖 AI Chatbot</h3>
+<p>Smart futuristic AI assistant.</p>
+</div>
 
-  <section>
+<div class="card">
+<h3>🎨 AI Generator</h3>
+<p>Generate images and designs instantly.</p>
+</div>
 
-    <h1 style="font-size:50px;">About Us</h1>
+<div class="card">
+<h3>⚡ Automation</h3>
+<p>Powerful AI automation systems.</p>
+</div>
 
-    <p style="margin-top:20px;color:#aaa;">
-      Darkverse AI is building futuristic AI tools and next generation technology.
-    </p>
+</div>
+</section>
 
-  </section>
+<section class="chat-section">
 
-  <section>
+<h1 style="font-size:50px;">🤖 AI Chat</h1>
 
-    <h1 style="font-size:50px;">Our AI Services</h1>
+<div class="chat-box">
 
-    <div class="cards">
+<input
+type="text"
+id="userInput"
+placeholder="Ask Darkverse AI..."
+>
 
-      <div class="card">
-        <h3>🤖 AI Chatbot</h3>
-        <p>Smart futuristic AI assistant.</p>
-      </div>
+<button onclick="replyAI()">
+Send
+</button>
 
-      <div class="card">
-        <h3>🎨 AI Generator</h3>
-        <p>Generate images and designs instantly.</p>
-      </div>
+<div id="aiResponse"></div>
 
-      <div class="card">
-        <h3>⚡ Automation</h3>
-        <p>Powerful AI automation systems.</p>
-      </div>
+</div>
 
-    </div>
+</section>
 
-  </section>
+<footer>
+© 2026 Darkverse AI — All Rights Reserved
+</footer>
 
-  <section>
+<script>
 
-    <h1 style="font-size:50px;">🤖 AI Chat</h1>
+const API_KEY = "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";
 
-    <div class="chat-box">
+async function replyAI(){
 
-      <input
-      type="text"
-      id="userInput"
-      placeholder="Ask Darkverse AI..."
-      >
+let input =
+document.getElementById("userInput").value;
 
-      <button onclick="replyAI()">
-        Send
-      </button>
+let response =
+document.getElementById("aiResponse");
 
-      <div id="aiResponse"></div>
+if(input == ""){
+response.innerHTML =
+"⚠️ Please type something";
+return;
+}
 
-    </div>
+response.innerHTML = "⏳ Thinking...";
 
-  </section>
+try{
 
-  <footer>
-    © 2026 Darkverse AI — All Rights Reserved
-  </footer>
+const res = await fetch(
+"https://openrouter.ai/api/v1/chat/completions",
+{
+method:"POST",
 
-  <script>
+headers:{
+"Authorization":"Bearer " + API_KEY,
+"Content-Type":"application/json"
+},
 
-    function replyAI(){
+body:JSON.stringify({
+model:"openai/gpt-3.5-turbo",
 
-      let input =
-      document.getElementById("userInput").value;
-
-      let response =
-      document.getElementById("aiResponse");
-
-      if(input == ""){
-
-        response.innerHTML =
-        "⚠️ Please type something";
-
-      }
-
-      else if(input.toLowerCase().includes("hello")){
-
-        response.innerHTML =
-        "🤖 Hello! Welcome to Darkverse AI";
-
-      }
-
-      else if(input.toLowerCase().includes("how are you")){
-
-        response.innerHTML =
-        "🤖 I am awesome 🚀";
-
-      }
-
-      else if(input.toLowerCase().includes("ai")){
-
-        response.innerHTML =
-        "🤖 AI is the future of technology";
-
-      }
-
-      else{
-
-        response.innerHTML =
-        "🤖 Darkverse AI says: " + input;
-
-      }
-
-    }
-
-  </script>
-
-</body>
-</html>
+messages:[
+{
+role:"
