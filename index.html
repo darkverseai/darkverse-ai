@@ -223,60 +223,62 @@ Send
 
 <script>
 
-const API_KEY = "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
+<script>
 
-async function replyAI(){
+function replyAI(){
 
 let input =
-document.getElementById("userInput").value;
+document.getElementById("userInput").value.toLowerCase();
 
 let response =
 document.getElementById("aiResponse");
 
-if(input === ""){
+if(input == ""){
+
 response.innerHTML =
 "⚠️ Please type something";
-return;
+
 }
 
-response.innerHTML = "⏳ Thinking...";
+else if(input.includes("hello")){
 
-try{
+response.innerHTML =
+"🤖 Hello! Welcome to Darkverse AI 🚀";
 
-const res = await fetch(
-"https://openrouter.ai/api/v1/chat/completions",
-{
-method:"POST",
-
-headers:{
-"Authorization":"Bearer " + API_KEY,
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-model:"mistralai/mistral-7b-instruct",
-
-messages:[
-{
-role:"user",
-content: input
 }
-]
 
-})
-
-});
-
-const data = await res.json();
+else if(input.includes("how are you")){
 
 response.innerHTML =
-"🤖 " + data.choices[0].message.content;
+"🤖 I am operating perfectly 🚀";
 
-}catch(error){
+}
+
+else if(input.includes("your name")){
 
 response.innerHTML =
-"❌ Error: " + error.message;
+"🤖 I am Darkverse AI";
+
+}
+
+else if(input.includes("ai")){
+
+response.innerHTML =
+"🤖 Artificial Intelligence is the future.";
+
+}
+
+else if(input.includes("who made you")){
+
+response.innerHTML =
+"🤖 I was created by Samir 🚀";
+
+}
+
+else{
+
+response.innerHTML =
+"🤖 Darkverse AI says: " + input;
 
 }
 
