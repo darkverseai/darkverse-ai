@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         },
 
         body: JSON.stringify({
-          model: "mistralai/mistral-7b-instruct",
+          model: "openai/gpt-3.5-turbo",
 
           messages: [
             {
