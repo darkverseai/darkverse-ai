@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         method: "POST",
 
         headers: {
-          "Authorization": "Bearer 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
+          "Authorization": "Bearer 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",
           "Content-Type": "application/json",
           "HTTP-Referer": "https://darkverse-ai.vercel.app",
           "X-Title": "Darkverse AI"
