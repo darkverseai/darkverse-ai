@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Darkverse AI</title>
 
 <style>
@@ -12,6 +17,7 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial;
+scroll-behavior:smooth;
 }
 
 body{
@@ -20,7 +26,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* Animated background */
+/* Animated Background */
 
 body::before{
 content:"";
@@ -28,55 +34,177 @@ position:fixed;
 width:100%;
 height:100%;
 background:
-radial-gradient(#00ffe155 1px, transparent 1px);
+radial-gradient(#00ffe144 1px, transparent 1px);
 background-size:40px 40px;
-animation:bg 12s linear infinite;
+animation:bgmove 12s linear infinite;
 z-index:-1;
 }
 
-@keyframes bg{
+@keyframes bgmove{
+
 from{
 transform:translateY(0);
 }
+
 to{
 transform:translateY(-40px);
 }
+
+}
+
+/* Navbar */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#111;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#00ffe1;
+text-shadow:0 0 25px #00ffe1;
+}
+
+nav ul{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+nav ul li{
+cursor:pointer;
+transition:0.3s;
+}
+
+nav ul li:hover{
+color:#00ffe1;
 }
 
 /* Hero */
 
 .hero{
-padding:50px 20px;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
 text-align:center;
+padding:20px;
 }
 
 .hero h1{
-font-size:70px;
+font-size:90px;
 color:#00ffe1;
-text-shadow:0 0 30px #00ffe1;
+text-shadow:0 0 40px #00ffe1;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+
+from{
+text-shadow:0 0 10px #00ffe1;
+}
+
+to{
+text-shadow:0 0 50px #00ffe1;
+}
+
 }
 
 .hero p{
 margin-top:20px;
-font-size:22px;
+font-size:24px;
 color:#aaa;
+max-width:700px;
 }
 
-/* Chat Box */
+.hero button{
+margin-top:30px;
+padding:18px 40px;
+border:none;
+border-radius:50px;
+background:#00ffe1;
+font-size:20px;
+cursor:pointer;
+box-shadow:0 0 25px #00ffe1;
+transition:0.3s;
+}
+
+.hero button:hover{
+transform:scale(1.08);
+}
+
+/* Sections */
+
+section{
+padding:100px 20px;
+text-align:center;
+}
+
+section h2{
+font-size:60px;
+margin-bottom:20px;
+color:#00ffe1;
+}
+
+section p{
+max-width:800px;
+margin:auto;
+color:#aaa;
+font-size:20px;
+line-height:1.7;
+}
+
+/* Cards */
+
+.cards{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+margin-top:50px;
+}
+
+.card{
+background:#111;
+padding:35px;
+width:280px;
+border-radius:25px;
+box-shadow:0 0 25px rgba(0,255,225,0.15);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px #00ffe1;
+}
+
+.card h3{
+font-size:28px;
+margin-bottom:15px;
+color:#00ffe1;
+}
+
+.card p{
+font-size:18px;
+}
+
+/* Chat */
 
 .chat-box{
-max-width:700px;
-margin:40px auto;
+max-width:750px;
+margin:auto;
 background:#111;
-padding:30px;
+padding:35px;
 border-radius:25px;
-box-shadow:0 0 30px #00ffe166;
-}
-
-.chat-box h2{
-text-align:center;
-font-size:55px;
-margin-bottom:25px;
+box-shadow:0 0 35px rgba(0,255,225,0.2);
 }
 
 .chat-box input{
@@ -106,12 +234,17 @@ background:#00ffe1;
 font-size:22px;
 cursor:pointer;
 box-shadow:0 0 25px #00ffe1;
+transition:0.3s;
+}
+
+.buttons button:hover{
+transform:scale(1.05);
 }
 
 #response{
-margin-top:30px;
+margin-top:35px;
 font-size:24px;
-line-height:1.7;
+line-height:1.8;
 color:#00ffe1;
 min-height:120px;
 }
@@ -119,10 +252,10 @@ min-height:120px;
 /* Footer */
 
 footer{
-margin-top:40px;
-padding:20px;
-text-align:center;
 background:#111;
+padding:30px;
+text-align:center;
+margin-top:50px;
 color:#aaa;
 }
 
@@ -131,46 +264,128 @@ color:#aaa;
 @media(max-width:700px){
 
 .hero h1{
-font-size:50px;
+font-size:55px;
 }
 
 .hero p{
 font-size:18px;
 }
 
-.chat-box h2{
+section h2{
 font-size:40px;
+}
+
+nav ul{
+display:none;
 }
 
 .buttons{
 flex-direction:column;
 }
 
+.card{
+width:100%;
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+🚀 Darkverse AI
+</div>
+
+<ul>
+<li>Home</li>
+<li>About</li>
+<li>Services</li>
+<li>AI Chat</li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
 <section class="hero">
 
-<h1>🚀 Darkverse AI</h1>
+<h1>Darkverse AI</h1>
 
 <p>
-Future AI Chatbot Powered By OpenRouter
+The Future Of Artificial Intelligence Starts Here.
+Smart futuristic chatbot with voice assistant and neon cyberpunk interface.
+</p>
+
+<button onclick="welcomeVoice()">
+Enter Future
+</button>
+
+</section>
+
+<!-- ABOUT -->
+
+<section>
+
+<h2>About Darkverse</h2>
+
+<p>
+Darkverse AI is a futuristic AI platform designed for next-generation technology lovers.
+Experience smart AI interaction, voice assistant technology, futuristic visuals and cyberpunk vibes in one place.
 </p>
 
 </section>
 
-<div class="chat-box">
+<!-- SERVICES -->
+
+<section>
+
+<h2>Our Services</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🤖 AI Chatbot</h3>
+<p>Smart futuristic AI assistant experience.</p>
+</div>
+
+<div class="card">
+<h3>🎤 Voice Assistant</h3>
+<p>Talk directly with AI using your voice.</p>
+</div>
+
+<div class="card">
+<h3>⚡ Fast Response</h3>
+<p>Lightning-fast futuristic interaction.</p>
+</div>
+
+<div class="card">
+<h3>🌌 Cyberpunk UI</h3>
+<p>Modern neon animated interface design.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- CHAT -->
+
+<section>
 
 <h2>🤖 AI Chat</h2>
+
+<div class="chat-box">
 
 <input
 type="text"
 id="input"
-placeholder="Ask anything..."
+placeholder="Ask Darkverse AI anything..."
 >
 
 <div class="buttons">
@@ -191,18 +406,39 @@ Welcome to Darkverse AI 🚀
 
 </div>
 
+</section>
+
+<!-- FOOTER -->
+
 <footer>
-© 2026 Darkverse AI
+© 2026 Darkverse AI — All Rights Reserved
 </footer>
+
+<!-- JAVASCRIPT -->
 
 <script>
 
-/* SEND MESSAGE */
+/* Welcome Voice */
+
+function welcomeVoice(){
+
+const speech =
+new SpeechSynthesisUtterance(
+"Welcome to Darkverse AI"
+);
+
+speech.lang = "en-US";
+
+window.speechSynthesis.speak(speech);
+
+}
+
+/* AI Reply System */
 
 function sendMessage(){
 
 const input =
-document.getElementById("input").value;
+document.getElementById("input").value.toLowerCase();
 
 const response =
 document.getElementById("response");
@@ -216,10 +452,61 @@ return;
 
 }
 
-/* Fake AI Reply */
+response.innerHTML =
+"⏳ Darkverse AI is thinking...";
 
-const reply =
+setTimeout(() => {
+
+let reply = "";
+
+if(input.includes("hello")){
+
+reply =
+"🤖 Hello! Welcome to Darkverse AI 🚀";
+
+}
+
+else if(input.includes("how are you")){
+
+reply =
+"🤖 I am operating perfectly 🚀";
+
+}
+
+else if(input.includes("your name")){
+
+reply =
+"🤖 I am Darkverse AI";
+
+}
+
+else if(input.includes("who made you")){
+
+reply =
+"🤖 I was created by Samir 🚀";
+
+}
+
+else if(input.includes("ai")){
+
+reply =
+"🤖 Artificial Intelligence is the future.";
+
+}
+
+else if(input.includes("future")){
+
+reply =
+"🤖 The future belongs to Artificial Intelligence 🚀";
+
+}
+
+else{
+
+reply =
 "🤖 Darkverse AI says: " + input;
+
+}
 
 response.innerHTML = reply;
 
@@ -231,6 +518,8 @@ new SpeechSynthesisUtterance(reply);
 speech.lang = "en-US";
 
 window.speechSynthesis.speak(speech);
+
+},1500);
 
 }
 
@@ -244,7 +533,7 @@ window.webkitSpeechRecognition;
 
 if(!SpeechRecognition){
 
-alert("Voice not supported");
+alert("Voice recognition not supported");
 
 return;
 
@@ -272,7 +561,6 @@ sendMessage();
 }
 
 </script>
-
 
 </body>
 </html>
