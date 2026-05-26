@@ -2,11 +2,8 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Darkverse AI</title>
 
@@ -25,32 +22,27 @@ color:white;
 overflow-x:hidden;
 }
 
-/* PARTICLES */
+/* BACKGROUND */
 
-.particles{
+body::before{
+content:"";
 position:fixed;
 width:100%;
 height:100%;
 background:
-radial-gradient(circle at 20% 20%,#00ffe144 2px,transparent 2px),
-radial-gradient(circle at 80% 40%,#00ffe144 2px,transparent 2px),
-radial-gradient(circle at 50% 80%,#00ffe144 2px,transparent 2px),
-radial-gradient(circle at 30% 60%,#00ffe144 2px,transparent 2px);
-background-size:200px 200px;
-animation:move 20s linear infinite;
+radial-gradient(#00ffe155 1px, transparent 1px);
+background-size:40px 40px;
+animation:bgmove 15s linear infinite;
 z-index:-1;
 }
 
-@keyframes move{
-
+@keyframes bgmove{
 from{
-transform:translateY(0px);
+transform:translateY(0);
 }
-
 to{
-transform:translateY(-200px);
+transform:translateY(-40px);
 }
-
 }
 
 /* NAVBAR */
@@ -63,11 +55,10 @@ padding:20px;
 background:#111;
 position:sticky;
 top:0;
-z-index:1000;
 }
 
 .logo{
-font-size:28px;
+font-size:30px;
 font-weight:bold;
 color:#00ffe1;
 text-shadow:0 0 20px #00ffe1;
@@ -91,7 +82,7 @@ color:#00ffe1;
 /* HERO */
 
 .hero{
-height:100vh;
+height:90vh;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -101,7 +92,7 @@ padding:20px;
 }
 
 .hero h1{
-font-size:75px;
+font-size:80px;
 color:#00ffe1;
 text-shadow:0 0 30px #00ffe1;
 animation:glow 2s infinite alternate;
@@ -125,17 +116,6 @@ font-size:22px;
 color:#aaa;
 }
 
-.hero button{
-margin-top:30px;
-padding:15px 40px;
-border:none;
-border-radius:40px;
-background:#00ffe1;
-font-size:18px;
-cursor:pointer;
-box-shadow:0 0 20px #00ffe1;
-}
-
 /* CHAT */
 
 .chat-section{
@@ -144,25 +124,29 @@ text-align:center;
 }
 
 .chat-box{
-max-width:600px;
+max-width:700px;
 margin:auto;
+background:#111;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 30px #00ffe144;
 }
 
 .chat-box input{
 width:100%;
 padding:15px;
 border:none;
+outline:none;
 border-radius:10px;
-background:#111;
+background:black;
 color:white;
 font-size:18px;
-outline:none;
 }
 
 .buttons{
 display:flex;
 justify-content:center;
-gap:15px;
+gap:20px;
 margin-top:20px;
 flex-wrap:wrap;
 }
@@ -175,23 +159,29 @@ background:#00ffe1;
 font-size:18px;
 cursor:pointer;
 box-shadow:0 0 20px #00ffe1;
+transition:0.3s;
+}
+
+.buttons button:hover{
+transform:scale(1.05);
 }
 
 #aiResponse{
 margin-top:30px;
 font-size:22px;
 color:#00ffe1;
-min-height:50px;
+min-height:80px;
+line-height:1.6;
 }
 
 /* FOOTER */
 
 footer{
+margin-top:60px;
 background:#111;
-padding:30px;
+padding:25px;
 text-align:center;
 color:#aaa;
-margin-top:50px;
 }
 
 /* MOBILE */
@@ -210,15 +200,16 @@ nav ul{
 display:none;
 }
 
+.chat-box{
+padding:20px;
+}
+
 }
 
 </style>
-
 </head>
 
 <body>
-
-<div class="particles"></div>
 
 <nav>
 
@@ -234,19 +225,15 @@ display:none;
 
 </nav>
 
-<div class="hero">
+<section class="hero">
 
 <h1>Darkverse AI</h1>
 
 <p>
-Future of Artificial Intelligence Starts Here
+Future Of Artificial Intelligence
 </p>
 
-<button onclick="speak('Welcome to Darkverse AI')">
-Enter Future
-</button>
-
-</div>
+</section>
 
 <section class="chat-section">
 
@@ -259,7 +246,7 @@ Enter Future
 <input
 type="text"
 id="userInput"
-placeholder="Ask Darkverse AI..."
+placeholder="Ask anything..."
 >
 
 <div class="buttons">
@@ -274,7 +261,9 @@ Send
 
 </div>
 
-<div id="aiResponse"></div>
+<div id="aiResponse">
+Welcome to Darkverse AI 🚀
+</div>
 
 </div>
 
@@ -285,6 +274,9 @@ Send
 </footer>
 
 <script>
+
+const API_KEY =
+"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";
 
 function speak(text){
 
@@ -297,68 +289,70 @@ window.speechSynthesis.speak(speech);
 
 }
 
-function getReply(input){
-
-if(input.includes("hello")){
-
-return "🤖 Hello! Welcome to Darkverse AI 🚀";
-
-}
-
-else if(input.includes("how are you")){
-
-return "🤖 I am operating perfectly 🚀";
-
-}
-
-else if(input.includes("your name")){
-
-return "🤖 I am Darkverse AI";
-
-}
-
-else if(input.includes("who made you")){
-
-return "🤖 I was created by Samir 🚀";
-
-}
-
-else if(input.includes("ai")){
-
-return "🤖 Artificial Intelligence is the future.";
-
-}
-
-else{
-
-return "🤖 Darkverse AI says: " + input;
-
-}
-
-}
-
-function replyAI(){
+async function replyAI(){
 
 const input =
-document.getElementById("userInput")
-.value.toLowerCase();
+document.getElementById("userInput").value;
 
 const response =
 document.getElementById("aiResponse");
 
+if(input.trim() === ""){
+
+response.innerHTML =
+"⚠️ Please type something";
+
+return;
+
+}
+
 response.innerHTML =
 "⏳ Thinking...";
 
-setTimeout(() => {
+try{
+
+const res = await fetch(
+"https://openrouter.ai/api/v1/chat/completions",
+{
+method:"POST",
+
+headers:{
+"Authorization":"Bearer " + API_KEY,
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+model:"openai/gpt-3.5-turbo",
+
+messages:[
+{
+role:"user",
+content:input
+}
+]
+
+})
+
+});
+
+const data = await res.json();
 
 const reply =
-getReply(input);
+data.choices[0].message.content;
 
-response.innerHTML = reply;
+response.innerHTML =
+"🤖 " + reply;
 
 speak(reply);
 
-},1500);
+}
+catch(error){
+
+response.innerHTML =
+"❌ AI Error: " + error.message;
+
+}
 
 }
 
@@ -385,11 +379,11 @@ recognition.start();
 
 recognition.onresult = function(event){
 
-const voiceText =
+const text =
 event.results[0][0].transcript;
 
 document.getElementById("userInput").value =
-voiceText;
+text;
 
 replyAI();
 
