@@ -444,195 +444,77 @@ Send
 </footer>
 
 <script>
+const chatBox = document.getElementById("chat-box");
+const input = document.getElementById("user-input");
 
-/* Welcome Voice */
+function addMessage(text, sender) {
+  const msg = document.createElement("div");
+  msg.className = sender === "user" ? "user-msg" : "bot-msg";
 
-function welcomeVoice(){
+  msg.innerHTML = sender === "user"
+    ? text
+    : "🤖 " + text;
 
-const speech =
-new SpeechSynthesisUtterance(
-"Welcome to Darkverse AI"
-);
-
-speech.lang = "en-US";
-
-window.speechSynthesis.speak(speech);
-
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-/* Add Message */
+async function sendMessage() {
+  const userText = input.value.trim();
 
-function addMessage(text, type){
+  if (!userText) return;
 
-const chat =
-document.getElementById("chatMessages");
+  addMessage(userText, "user");
+  input.value = "";
 
-const message =
-document.createElement("div");
+  const typing = document.createElement("div");
+  typing.className = "bot-msg";
+  typing.id = "typing";
+  typing.innerHTML = "🤖 Typing...";
+  chatBox.appendChild(typing);
 
-message.className =
-type + "-message";
+  chatBox.scrollTop = chatBox.scrollHeight;
 
-message.innerHTML = text;
+  try {
 
-chat.appendChild(message);
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: userText
+      })
+    });
 
-chat.scrollTop =
-chat.scrollHeight;
+    const data = await response.json();
 
+    document.getElementById("typing").remove();
+
+    addMessage(data.reply || "No reply", "bot");
+
+  } catch (error) {
+
+    document.getElementById("typing").remove();
+
+    addMessage("Error connecting AI 🚫", "bot");
+  }
 }
 
-/* Typing Animation */
+function startVoice() {
 
-function typingAnimation(callback){
+  const recognition =
+    new webkitSpeechRecognition() ||
+    new SpeechRecognition();
 
-const chat =
-document.getElementById("chatMessages");
+  recognition.lang = "en-US";
 
-const typing =
-document.createElement("div");
+  recognition.onresult = function(event) {
+    input.value = event.results[0][0].transcript;
+  };
 
-typing.className =
-"ai-message";
-
-typing.id = "typing";
-
-typing.innerHTML =
-"⏳ Darkverse AI is typing...";
-
-chat.appendChild(typing);
-
-chat.scrollTop =
-chat.scrollHeight;
-
-setTimeout(() => {
-
-typing.remove();
-
-callback();
-
-},1500);
-
+  recognition.start();
 }
-
-/* AI Logic */
-
-function getAIReply(input){
-
-input = input.toLowerCase();
-
-if(input.includes("hello")){
-
-return "🤖 Hello! Welcome to Darkverse AI 🚀";
-
-}
-
-else if(input.includes("how are you")){
-
-return "🤖 I am operating perfectly 🚀";
-
-}
-
-else if(input.includes("your name")){
-
-return "🤖 I am Darkverse AI";
-
-}
-
-else if(input.includes("who made you")){
-
-return "🤖 I was created by Samir 🚀";
-
-}
-
-else if(input.includes("future")){
-
-return "🤖 The future belongs to Artificial Intelligence.";
-
-}
-
-else{
-
-return "🤖 Darkverse AI says: " + input;
-
-}
-
-}
-
-/* Send Message */
-
-function sendMessage(){
-
-const inputBox =
-document.getElementById("userInput");
-
-const input =
-inputBox.value;
-
-if(input.trim() === "") return;
-
-addMessage(input,"user");
-
-inputBox.value = "";
-
-typingAnimation(() => {
-
-const reply =
-getAIReply(input);
-
-addMessage(reply,"ai");
-
-/* Voice Output */
-
-const speech =
-new SpeechSynthesisUtterance(reply);
-
-speech.lang = "en-US";
-
-window.speechSynthesis.speak(speech);
-
-});
-
-}
-
-/* Voice Input */
-
-function startVoice(){
-
-const SpeechRecognition =
-window.SpeechRecognition ||
-window.webkitSpeechRecognition;
-
-if(!SpeechRecognition){
-
-alert("Voice recognition not supported");
-
-return;
-
-}
-
-const recognition =
-new SpeechRecognition();
-
-recognition.lang = "en-US";
-
-recognition.start();
-
-recognition.onresult =
-function(event){
-
-const text =
-event.results[0][0].transcript;
-
-document.getElementById("userInput").value =
-text;
-
-sendMessage();
-
-};
-
-}
-
 </script>
 
 </body>
