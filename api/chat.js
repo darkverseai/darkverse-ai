@@ -16,44 +16,49 @@ export default async function handler(req, res) {
         method: "POST",
 
         headers: {
-          "Authorization":
-            "Bearer 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
-
-          "Content-Type": "application/json"
+          "Authorization": "Bearer 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
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://darkverse-ai.vercel.app",
+          "X-Title": "Darkverse AI"
         },
 
         body: JSON.stringify({
-
-          model: model: "mistralai/mistral-7b-instruct",
+          model: "mistralai/mistral-7b-instruct",
 
           messages: [
+            {
+              role: "system",
+              content: "You are Darkverse AI, a smart futuristic assistant."
+            },
             {
               role: "user",
               content: message
             }
           ]
-
         })
-
       }
     );
 
     const data = await response.json();
 
-    const reply =
-      data.choices?.[0]?.message?.content ||
-      "AI failed to respond";
+    console.log(data);
 
-    res.status(200).json({
-      reply
+    if (!data.choices || !data.choices[0]) {
+      return res.status(500).json({
+        reply: "No reply from AI"
+      });
+    }
+
+    return res.status(200).json({
+      reply: data.choices[0].message.content
     });
 
   } catch (error) {
 
-    res.status(200).json({
+    console.log(error);
+
+    return res.status(500).json({
       reply: "Server Error ❌"
     });
-
   }
-
 }
