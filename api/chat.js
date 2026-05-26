@@ -25,10 +25,15 @@ export default async function handler(req, res) {
 
         body: JSON.stringify({
 
-          model:
-            "openai/gpt-3.5-turbo",
+          model: "openai/gpt-3.5-turbo",
 
           messages: [
+            {
+              role: "system",
+              content:
+                "You are Darkverse AI, a futuristic helpful assistant."
+            },
+
             {
               role: "user",
               content: message
@@ -42,19 +47,19 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const reply =
-      data.choices?.[0]?.message?.content
-      || "No AI reply";
+    console.log(data);
 
-    res.status(200).json({
-      reply
+    return res.status(200).json({
+      reply:
+        data.choices?.[0]?.message?.content ||
+        "No reply from AI"
     });
 
-  }
+  } catch (error) {
 
-  catch (error) {
+    console.log(error);
 
-    res.status(500).json({
+    return res.status(500).json({
       reply: "Server Error"
     });
 
