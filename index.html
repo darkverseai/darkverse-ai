@@ -16,6 +16,7 @@
     body{
       background:black;
       color:white;
+      overflow-x:hidden;
     }
 
     nav{
@@ -26,12 +27,14 @@
       background:#111;
       position:sticky;
       top:0;
+      z-index:1000;
     }
 
     .logo{
       font-size:28px;
       color:#00ffe1;
       font-weight:bold;
+      text-shadow:0 0 10px #00ffe1;
     }
 
     nav ul{
@@ -42,6 +45,11 @@
 
     nav ul li{
       cursor:pointer;
+      transition:0.3s;
+    }
+
+    nav ul li:hover{
+      color:#00ffe1;
     }
 
     .hero{
@@ -52,12 +60,24 @@
       flex-direction:column;
       text-align:center;
       padding:20px;
+      background:radial-gradient(circle,#111,black);
     }
 
     .hero h1{
       font-size:70px;
       color:#00ffe1;
       text-shadow:0 0 20px #00ffe1;
+      animation:glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px #00ffe1;
+      }
+
+      to{
+        text-shadow:0 0 30px #00ffe1;
+      }
     }
 
     .hero p{
@@ -75,6 +95,11 @@
       font-size:18px;
       cursor:pointer;
       box-shadow:0 0 20px #00ffe1;
+      transition:0.3s;
+    }
+
+    .hero button:hover{
+      transform:scale(1.1);
     }
 
     section{
@@ -96,6 +121,12 @@
       width:250px;
       border-radius:20px;
       box-shadow:0 0 20px rgba(0,255,225,0.2);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 30px #00ffe1;
     }
 
     .card h3{
@@ -115,6 +146,8 @@
       border:none;
       border-radius:10px;
       font-size:18px;
+      background:#111;
+      color:white;
     }
 
     .chat-box button{
@@ -132,6 +165,7 @@
       margin-top:30px;
       font-size:22px;
       color:#00ffe1;
+      min-height:50px;
     }
 
     footer{
@@ -169,7 +203,7 @@
 Future of Artificial Intelligence Starts Here
 </p>
 
-<button>
+<button onclick="speak('Welcome to Darkverse AI')">
 Enter Future
 </button>
 
@@ -244,6 +278,17 @@ Send
 
 <script>
 
+function speak(text){
+
+let speech =
+new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-US";
+
+window.speechSynthesis.speak(speech);
+
+}
+
 function replyAI(){
 
 let input =
@@ -257,12 +302,16 @@ if(input == ""){
 response.innerHTML =
 "⚠️ Please type something";
 
+speak("Please type something");
+
 }
 
 else if(input.includes("hello")){
 
 response.innerHTML =
 "🤖 Hello! Welcome to Darkverse AI 🚀";
+
+speak("Hello! Welcome to Darkverse AI");
 
 }
 
@@ -271,12 +320,16 @@ else if(input.includes("how are you")){
 response.innerHTML =
 "🤖 I am operating perfectly 🚀";
 
+speak("I am operating perfectly");
+
 }
 
 else if(input.includes("your name")){
 
 response.innerHTML =
 "🤖 I am Darkverse AI";
+
+speak("I am Darkverse AI");
 
 }
 
@@ -285,6 +338,8 @@ else if(input.includes("who made you")){
 response.innerHTML =
 "🤖 I was created by Samir 🚀";
 
+speak("I was created by Samir");
+
 }
 
 else if(input.includes("ai")){
@@ -292,12 +347,16 @@ else if(input.includes("ai")){
 response.innerHTML =
 "🤖 Artificial Intelligence is the future.";
 
+speak("Artificial Intelligence is the future");
+
 }
 
 else{
 
 response.innerHTML =
 "🤖 Darkverse AI says: " + input;
+
+speak("Darkverse AI says " + input);
 
 }
 
