@@ -197,11 +197,9 @@ Welcome to Darkverse AI 🚀
 
 <script>
 
-const API_KEY =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
-
 /* SEND MESSAGE */
 
-async function sendMessage(){
+function sendMessage(){
 
 const input =
 document.getElementById("input").value;
@@ -218,48 +216,14 @@ return;
 
 }
 
-response.innerHTML =
-"⏳ Thinking...";
-
-try{
-
-const res = await fetch(
-"https://openrouter.ai/api/v1/chat/completions",
-{
-method:"POST",
-
-headers:{
-"Authorization":"Bearer " + API_KEY,
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-model:"mistralai/mistral-7b-instruct",
-
-messages:[
-{
-role:"user",
-content:input
-}
-]
-
-})
-
-});
-
-const data = await res.json();
-
-console.log(data);
+/* Fake AI Reply */
 
 const reply =
-data.choices?.[0]?.message?.content ||
-"No AI reply";
+"🤖 Darkverse AI says: " + input;
 
-response.innerHTML =
-"🤖 " + reply;
+response.innerHTML = reply;
 
-/* Voice output */
+/* Voice Output */
 
 const speech =
 new SpeechSynthesisUtterance(reply);
@@ -269,16 +233,8 @@ speech.lang = "en-US";
 window.speechSynthesis.speak(speech);
 
 }
-catch(error){
 
-response.innerHTML =
-"❌ Error: " + error.message;
-
-}
-
-}
-
-/* VOICE INPUT */
+/* Voice Input */
 
 function startVoice(){
 
@@ -316,6 +272,7 @@ sendMessage();
 }
 
 </script>
+
 
 </body>
 </html>
