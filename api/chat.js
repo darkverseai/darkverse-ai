@@ -11,9 +11,7 @@ export default async function handler(req, res) {
     const { message } = req.body;
 
     const response = await fetch(
-
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-
       {
         method: "POST",
 
@@ -22,7 +20,6 @@ export default async function handler(req, res) {
         },
 
         body: JSON.stringify({
-
           contents: [
             {
               parts: [
@@ -32,26 +29,38 @@ export default async function handler(req, res) {
               ]
             }
           ]
-
         })
-
       }
     );
 
     const data = await response.json();
 
-    const reply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text
-      || "No reply from Gemini";
+    console.log(data);
 
-    res.status(200).json({
+    // Debug response
+    if (data.error) {
+      return res.status(200).json({
+        reply: "Gemini Error: " + data.error.message
+      });
+    }
+
+    const reply =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!reply) {
+      return res.status(200).json({
+        reply: "No text reply from Gemini"
+      });
+    }
+
+    return res.status(200).json({
       reply
     });
 
   } catch (error) {
 
-    res.status(500).json({
-      reply: "Server Error ❌"
+    return res.status(500).json({
+      reply: "Server Error: " + error.message
     });
 
   }
