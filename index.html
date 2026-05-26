@@ -12,17 +12,17 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:black;
-color:white;
+background:#000;
 height:100vh;
-overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
+overflow:hidden;
+color:white;
 }
 
 body::before{
@@ -33,26 +33,27 @@ height:100%;
 background-image:
 radial-gradient(#00ffe7 1px, transparent 1px);
 background-size:40px 40px;
-opacity:0.2;
+opacity:0.15;
 z-index:-1;
 }
 
 .container{
 width:95%;
-max-width:500px;
+max-width:520px;
 height:95vh;
-background:#0a0a0a;
+background:rgba(10,10,10,0.95);
 border:2px solid #00ffe7;
 border-radius:30px;
 padding:20px;
 display:flex;
 flex-direction:column;
-box-shadow:0 0 30px #00ffe7;
+box-shadow:0 0 35px #00ffe7;
+backdrop-filter:blur(10px);
 }
 
 .logo{
 text-align:center;
-font-size:42px;
+font-size:40px;
 font-weight:bold;
 color:#00ffe7;
 margin-bottom:20px;
@@ -69,14 +70,24 @@ gap:15px;
 scroll-behavior:smooth;
 }
 
+.chat-box::-webkit-scrollbar{
+width:4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb{
+background:#00ffe7;
+border-radius:20px;
+}
+
 .user,
 .bot{
 max-width:80%;
 padding:15px;
 border-radius:20px;
-font-size:20px;
-word-wrap:break-word;
+font-size:18px;
+line-height:1.5;
 animation:fadeIn 0.3s ease;
+word-wrap:break-word;
 }
 
 .user{
@@ -84,49 +95,63 @@ align-self:flex-end;
 background:#00ffe7;
 color:black;
 border-bottom-right-radius:5px;
+font-weight:bold;
 }
 
 .bot{
 align-self:flex-start;
-background:#1a1a1a;
+background:#161616;
 color:#00ffe7;
 border-bottom-left-radius:5px;
-box-shadow:0 0 15px rgba(0,255,231,0.3);
+box-shadow:0 0 15px rgba(0,255,231,0.2);
+}
+
+.typing{
+font-style:italic;
+opacity:0.7;
 }
 
 .input-area{
-margin-top:15px;
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:12px;
+margin-top:15px;
+}
+
+.input-row{
+display:flex;
+gap:10px;
 }
 
 input{
-padding:18px;
+flex:1;
+padding:16px;
 border:none;
 outline:none;
 border-radius:18px;
-background:black;
+background:#0d0d0d;
 color:white;
-font-size:20px;
-box-shadow:0 0 15px rgba(0,255,231,0.3);
+font-size:18px;
+box-shadow:0 0 15px rgba(0,255,231,0.2);
 }
 
-button{
-padding:18px;
+.send-btn,
+.voice-btn{
+padding:16px;
 border:none;
-border-radius:50px;
-font-size:22px;
+border-radius:18px;
 background:#00ffe7;
 color:black;
+font-size:18px;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 25px #00ffe7;
 transition:0.3s;
+box-shadow:0 0 20px #00ffe7;
 }
 
-button:hover{
-transform:scale(1.03);
+.send-btn:hover,
+.voice-btn:hover{
+transform:scale(1.05);
 }
 
 @keyframes fadeIn{
@@ -147,7 +172,9 @@ transform:translateY(0);
 
 <div class="container">
 
-<div class="logo">🚀 Darkverse AI</div>
+<div class="logo">
+🚀 Darkverse AI
+</div>
 
 <div class="chat-box" id="chatBox">
 
@@ -159,18 +186,26 @@ transform:translateY(0);
 
 <div class="input-area">
 
+<div class="input-row">
+
 <input
 type="text"
 id="userInput"
 placeholder="Ask Darkverse AI..."
 >
 
-<button onclick="sendMessage()">
+<button
+class="send-btn"
+onclick="sendMessage()">
 Send
 </button>
 
-<button onclick="startVoice()">
-🎤 Speak
+</div>
+
+<button
+class="voice-btn"
+onclick="startVoice()">
+🎤 Voice Input
 </button>
 
 </div>
@@ -182,6 +217,14 @@ Send
 const input = document.getElementById("userInput");
 const chatBox = document.getElementById("chatBox");
 
+input.addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+sendMessage();
+}
+
+});
+
 function addMessage(text, sender){
 
 const msg = document.createElement("div");
@@ -191,12 +234,17 @@ msg.classList.add(sender);
 chatBox.appendChild(msg);
 
 if(sender === "bot"){
+
 typeEffect(msg, "🤖 " + text);
+
 }else{
+
 msg.innerText = text;
+
 }
 
 chatBox.scrollTop = chatBox.scrollHeight;
+
 }
 
 function typeEffect(element, text){
@@ -211,9 +259,11 @@ element.innerHTML += text.charAt(i);
 
 i++;
 
-setTimeout(typing, 20);
+setTimeout(typing, 15);
 
 }
+
+chatBox.scrollTop = chatBox.scrollHeight;
 
 }
 
@@ -230,6 +280,19 @@ if(!message) return;
 addMessage(message, "user");
 
 input.value = "";
+
+const typingMsg =
+document.createElement("div");
+
+typingMsg.classList.add("bot","typing");
+
+typingMsg.innerText =
+"🤖 Darkverse AI is typing...";
+
+chatBox.appendChild(typingMsg);
+
+chatBox.scrollTop =
+chatBox.scrollHeight;
 
 try{
 
@@ -249,11 +312,21 @@ message:message
 
 const data = await response.json();
 
-addMessage(data.reply || "No response", "bot");
+typingMsg.remove();
+
+addMessage(
+data.reply || "No response",
+"bot"
+);
 
 }catch(error){
 
-addMessage("Server Error ❌", "bot");
+typingMsg.remove();
+
+addMessage(
+"Server Error ❌",
+"bot"
+);
 
 }
 
@@ -267,18 +340,27 @@ window.webkitSpeechRecognition)();
 
 recognition.lang = "en-US";
 
+recognition.start();
+
 recognition.onresult = function(event){
 
-const voiceText =
+const text =
 event.results[0][0].transcript;
 
-input.value = voiceText;
+input.value = text;
 
 sendMessage();
 
 };
 
-recognition.start();
+recognition.onerror = function(){
+
+addMessage(
+"Voice recognition failed ❌",
+"bot"
+);
+
+};
 
 }
 
