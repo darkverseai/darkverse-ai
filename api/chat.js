@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
         body: JSON.stringify({
 
-          model: "openai/gpt-3.5-turbo",
+          model: model: "mistralai/mistral-7b-instruct",
 
           messages: [
             {
