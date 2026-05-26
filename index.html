@@ -139,7 +139,7 @@ transition:0.3s;
 transform:scale(1.1);
 }
 
-/* SECTIONS */
+/* SECTION */
 
 section{
 padding:100px 20px;
@@ -192,9 +192,16 @@ color:white;
 outline:none;
 }
 
-.chat-box button{
+.chat-buttons{
+display:flex;
+justify-content:center;
+gap:15px;
 margin-top:20px;
-padding:15px 40px;
+flex-wrap:wrap;
+}
+
+.chat-buttons button{
+padding:15px 30px;
 border:none;
 border-radius:40px;
 background:#00ffe1;
@@ -276,45 +283,6 @@ Enter Future
 <section>
 
 <h1 style="font-size:50px;">
-About Us
-</h1>
-
-<p style="margin-top:20px;color:#aaa;">
-Darkverse AI is building futuristic AI tools and next generation technology.
-</p>
-
-</section>
-
-<section>
-
-<h1 style="font-size:50px;">
-Our AI Services
-</h1>
-
-<div class="cards">
-
-<div class="card">
-<h3>🤖 AI Chatbot</h3>
-<p>Smart futuristic AI assistant.</p>
-</div>
-
-<div class="card">
-<h3>🎨 AI Generator</h3>
-<p>Generate images and designs instantly.</p>
-</div>
-
-<div class="card">
-<h3>⚡ Automation</h3>
-<p>Powerful AI automation systems.</p>
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h1 style="font-size:50px;">
 🤖 AI Chat
 </h1>
 
@@ -326,9 +294,17 @@ id="userInput"
 placeholder="Ask Darkverse AI..."
 >
 
+<div class="chat-buttons">
+
 <button onclick="replyAI()">
 Send
 </button>
+
+<button onclick="startVoice()">
+🎤 Speak
+</button>
+
+</div>
 
 <div id="aiResponse"></div>
 
@@ -411,15 +387,6 @@ speak("I was created by Samir");
 
 }
 
-else if(input.includes("ai")){
-
-response.innerHTML =
-"🤖 Artificial Intelligence is the future.";
-
-speak("Artificial Intelligence is the future");
-
-}
-
 else{
 
 response.innerHTML =
@@ -430,6 +397,32 @@ speak("Darkverse AI says " + input);
 }
 
 },1500);
+
+}
+
+/* VOICE INPUT */
+
+function startVoice(){
+
+let recognition =
+new(window.SpeechRecognition ||
+window.webkitSpeechRecognition)();
+
+recognition.lang = "en-US";
+
+recognition.start();
+
+recognition.onresult = function(event){
+
+let voiceText =
+event.results[0][0].transcript;
+
+document.getElementById("userInput").value =
+voiceText;
+
+replyAI();
+
+}
 
 }
 
