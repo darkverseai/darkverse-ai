@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<title>Darkverse AI</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Darkverse AI</title>
 
 <style>
 
@@ -28,17 +32,16 @@ position:fixed;
 width:100%;
 height:100%;
 background:
-radial-gradient(circle at 20% 20%,#00ffe133 2px,transparent 2px),
-radial-gradient(circle at 80% 40%,#00ffe133 2px,transparent 2px),
-radial-gradient(circle at 50% 80%,#00ffe133 2px,transparent 2px),
-radial-gradient(circle at 30% 60%,#00ffe133 2px,transparent 2px),
-radial-gradient(circle at 70% 90%,#00ffe133 2px,transparent 2px);
+radial-gradient(circle at 20% 20%,#00ffe144 2px,transparent 2px),
+radial-gradient(circle at 80% 40%,#00ffe144 2px,transparent 2px),
+radial-gradient(circle at 50% 80%,#00ffe144 2px,transparent 2px),
+radial-gradient(circle at 30% 60%,#00ffe144 2px,transparent 2px);
 background-size:200px 200px;
-animation:moveParticles 20s linear infinite;
+animation:move 20s linear infinite;
 z-index:-1;
 }
 
-@keyframes moveParticles{
+@keyframes move{
 
 from{
 transform:translateY(0px);
@@ -95,7 +98,6 @@ align-items:center;
 flex-direction:column;
 text-align:center;
 padding:20px;
-background:radial-gradient(circle,#111,black);
 }
 
 .hero h1{
@@ -119,7 +121,7 @@ text-shadow:0 0 40px #00ffe1;
 
 .hero p{
 margin-top:20px;
-font-size:24px;
+font-size:22px;
 color:#aaa;
 }
 
@@ -132,53 +134,18 @@ background:#00ffe1;
 font-size:18px;
 cursor:pointer;
 box-shadow:0 0 20px #00ffe1;
-transition:0.3s;
-}
-
-.hero button:hover{
-transform:scale(1.1);
-}
-
-/* SECTION */
-
-section{
-padding:100px 20px;
-text-align:center;
-}
-
-.cards{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin-top:50px;
-}
-
-.card{
-background:#111;
-padding:30px;
-width:250px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(0,255,225,0.2);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 30px #00ffe1;
-}
-
-.card h3{
-color:#00ffe1;
-margin-bottom:15px;
 }
 
 /* CHAT */
 
+.chat-section{
+padding:80px 20px;
+text-align:center;
+}
+
 .chat-box{
 max-width:600px;
 margin:auto;
-margin-top:40px;
 }
 
 .chat-box input{
@@ -186,13 +153,13 @@ width:100%;
 padding:15px;
 border:none;
 border-radius:10px;
-font-size:18px;
 background:#111;
 color:white;
+font-size:18px;
 outline:none;
 }
 
-.chat-buttons{
+.buttons{
 display:flex;
 justify-content:center;
 gap:15px;
@@ -200,8 +167,8 @@ margin-top:20px;
 flex-wrap:wrap;
 }
 
-.chat-buttons button{
-padding:15px 30px;
+.buttons button{
+padding:15px 35px;
 border:none;
 border-radius:40px;
 background:#00ffe1;
@@ -223,8 +190,8 @@ footer{
 background:#111;
 padding:30px;
 text-align:center;
-margin-top:50px;
 color:#aaa;
+margin-top:50px;
 }
 
 /* MOBILE */
@@ -246,6 +213,7 @@ display:none;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -280,7 +248,7 @@ Enter Future
 
 </div>
 
-<section>
+<section class="chat-section">
 
 <h1 style="font-size:50px;">
 🤖 AI Chat
@@ -294,7 +262,7 @@ id="userInput"
 placeholder="Ask Darkverse AI..."
 >
 
-<div class="chat-buttons">
+<div class="buttons">
 
 <button onclick="replyAI()">
 Send
@@ -320,7 +288,7 @@ Send
 
 function speak(text){
 
-let speech =
+const speech =
 new SpeechSynthesisUtterance(text);
 
 speech.lang = "en-US";
@@ -329,12 +297,53 @@ window.speechSynthesis.speak(speech);
 
 }
 
+function getReply(input){
+
+if(input.includes("hello")){
+
+return "🤖 Hello! Welcome to Darkverse AI 🚀";
+
+}
+
+else if(input.includes("how are you")){
+
+return "🤖 I am operating perfectly 🚀";
+
+}
+
+else if(input.includes("your name")){
+
+return "🤖 I am Darkverse AI";
+
+}
+
+else if(input.includes("who made you")){
+
+return "🤖 I was created by Samir 🚀";
+
+}
+
+else if(input.includes("ai")){
+
+return "🤖 Artificial Intelligence is the future.";
+
+}
+
+else{
+
+return "🤖 Darkverse AI says: " + input;
+
+}
+
+}
+
 function replyAI(){
 
-let input =
-document.getElementById("userInput").value.toLowerCase();
+const input =
+document.getElementById("userInput")
+.value.toLowerCase();
 
-let response =
+const response =
 document.getElementById("aiResponse");
 
 response.innerHTML =
@@ -342,71 +351,33 @@ response.innerHTML =
 
 setTimeout(() => {
 
-if(input == ""){
+const reply =
+getReply(input);
 
-response.innerHTML =
-"⚠️ Please type something";
+response.innerHTML = reply;
 
-speak("Please type something");
-
-}
-
-else if(input.includes("hello")){
-
-response.innerHTML =
-"🤖 Hello! Welcome to Darkverse AI 🚀";
-
-speak("Hello! Welcome to Darkverse AI");
-
-}
-
-else if(input.includes("how are you")){
-
-response.innerHTML =
-"🤖 I am operating perfectly 🚀";
-
-speak("I am operating perfectly");
-
-}
-
-else if(input.includes("your name")){
-
-response.innerHTML =
-"🤖 I am Darkverse AI";
-
-speak("I am Darkverse AI");
-
-}
-
-else if(input.includes("who made you")){
-
-response.innerHTML =
-"🤖 I was created by Samir 🚀";
-
-speak("I was created by Samir");
-
-}
-
-else{
-
-response.innerHTML =
-"🤖 Darkverse AI says: " + input;
-
-speak("Darkverse AI says " + input);
-
-}
+speak(reply);
 
 },1500);
 
 }
 
-/* VOICE INPUT */
-
 function startVoice(){
 
-let recognition =
-new(window.SpeechRecognition ||
-window.webkitSpeechRecognition)();
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+
+alert("Voice recognition not supported");
+
+return;
+
+}
+
+const recognition =
+new SpeechRecognition();
 
 recognition.lang = "en-US";
 
@@ -414,7 +385,7 @@ recognition.start();
 
 recognition.onresult = function(event){
 
-let voiceText =
+const voiceText =
 event.results[0][0].transcript;
 
 document.getElementById("userInput").value =
@@ -422,7 +393,7 @@ voiceText;
 
 replyAI();
 
-}
+};
 
 }
 
