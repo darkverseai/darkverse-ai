@@ -17,20 +17,13 @@ export default async function handler(req, res) {
 
         headers: {
           "Authorization": "Bearer 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",
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://darkverse-ai.vercel.app",
-          "X-Title": "Darkverse AI"
+          "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
           model: "openai/gpt-3.5-turbo",
 
           messages: [
-            {
-              role: "system",
-              content: "You are Darkverse AI, a smart helpful assistant."
-            },
-
             {
               role: "user",
               content: message
@@ -42,18 +35,14 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const reply =
-      data?.choices?.[0]?.message?.content ||
-      "No reply from AI";
-
-    res.status(200).json({
-      reply
+    return res.status(200).json({
+      reply: JSON.stringify(data)
     });
 
-  } catch (error) {
+  } catch (err) {
 
-    res.status(500).json({
-      reply: "Server Error ❌"
+    return res.status(500).json({
+      reply: err.message
     });
 
   }
